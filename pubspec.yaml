@@ -60,6 +60,7 @@ dependencies:
   local_hero: ^0.2.0
   drop_shadow: ^0.0.2+1
   uuid: ^3.0.7
+  msh_checkbox: ^1.2.1
 
 dev_dependencies:
   flutter_test:

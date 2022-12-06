@@ -238,7 +238,7 @@ class _DataPageState extends State<DataPage> {
                     MaterialPageRoute(
                       builder: (context) => EditWorkOut(editWorkout: workout,),
                     ),
-                  );
+                  ).then((value) => setState( (){}));
                   /// goto edit page
                   ///
                 },

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:lift/model/Exercise.dart';
 import 'package:lift/model/Workout.dart';
+import 'package:lift/state_management/DataState.dart';
 import 'package:lift/state_management/NavigationState.dart';
 import 'package:lift/state_management/WorkoutState.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
@@ -277,11 +278,12 @@ class _EditWorkOut extends State<EditWorkOut> {
   @override
   Widget build(BuildContext context) {
     WorkoutState _workout = Provider.of<WorkoutState>(context);
+    DataState _datastate = Provider.of<DataState>(context, listen: false);
 
     if(count == 0) {
       count++;
       int index = 0;
-      workEditing.exercises = widget.editWorkout.exercises;
+      workEditing.exercises = List.from(widget.editWorkout.exercises);
       workEditing.docId = widget.editWorkout.docId;
       workEditing.createDate = widget.editWorkout.createDate;
 
@@ -393,7 +395,7 @@ class _EditWorkOut extends State<EditWorkOut> {
                       shape: OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(12)
                       ),
-                      onPressed: () {
+                      onPressed: () async{
                         setState(() {
                           if (workEditing.exercises.isEmpty) {
                             print("운동을 추가하시오");
@@ -401,14 +403,35 @@ class _EditWorkOut extends State<EditWorkOut> {
                           }
 
                           print(workEditing.toString());
-                          _workout.addWorkout(workEditing);
+                          print("\n\n\n"+widget.editWorkout.toString());
+                          // _workout.addWorkout(workEditing);
+                          _workout.editWorkout(widget.editWorkout, workEditing);
+                          print("done");
+
                           workEditing.exercises.clear();
                           weightcontrol.clear();
                           repscontrol.clear();
                           workoutDone.clear();
 
-                          Navigator.pop(context);
+
                         });
+                        DateTime startDate = _datastate.date1;
+                        DateTime? now = _datastate.date2;
+
+                        await _datastate.initData();
+                        await _datastate.updateWorkoutDays(startDate);
+                        if(now != null) {
+                          await _datastate.updateWorkouts(startDate, now);
+                        }
+
+                        print("working");
+                        
+                        // Navigator.of(context).popUntil((route) => false);
+                        Navigator.popUntil(context, ModalRoute.withName('/'));
+                        Navigator.pushNamed(context, '/datapage');
+
+
+                        // Navigator.of(context).popAndPushNamed('/datapage');
                       },
                       child: Text(
                         "Edit",

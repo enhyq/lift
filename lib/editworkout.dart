@@ -218,7 +218,7 @@ class _EditWorkOut extends State<EditWorkOut> {
                     ],
                   ), //number weight reps check buttons
                   Column(
-                    children: _buildSet(exercise, weightcontrol[workEditing.exercises.indexOf(exercise)], repscontrol[widget.editWorkout.exercises.indexOf(exercise)], workoutDone[widget.editWorkout.exercises.indexOf(exercise)]),
+                    children: _buildSet(exercise, weightcontrol[workEditing.exercises.indexOf(exercise)], repscontrol[workEditing.exercises.indexOf(exercise)], workoutDone[workEditing.exercises.indexOf(exercise)]),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -253,7 +253,7 @@ class _EditWorkOut extends State<EditWorkOut> {
                             weightcontrol[workEditing.exercises.indexOf(exercise)].add(TextEditingController(text: "0"));
                             repscontrol[workEditing.exercises.indexOf(exercise)].add(TextEditingController(text: "0"));
                             workoutDone[workEditing.exercises.indexOf(exercise)].add(false);
-                            print(workoutDone.toString());
+                            // print(workoutDone.toString());
                           });
                         },
                         child: Text(

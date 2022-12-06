@@ -424,6 +424,8 @@ class _EditWorkOut extends State<EditWorkOut> {
                           await _datastate.updateWorkouts(startDate, now);
                         }
 
+                        await _datastate.reloadDataAndWorkouts();
+
                         print("working");
                         
                         // Navigator.of(context).popUntil((route) => false);

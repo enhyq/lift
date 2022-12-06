@@ -91,15 +91,17 @@ class _DataPageState extends State<DataPage> {
                 // mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
+                  IconButton( //얘가 맞음!@!@#
                     icon: const Icon(Icons.edit),
                     color: Colors.blueAccent,
                     onPressed: () {
-                      Navigator.of(context).push(
+                      Navigator.of(context).push( //얘가 맞음!@~!@~!@
                         MaterialPageRoute(
                           builder: (context) => EditWorkOut(editWorkout: workout,),
                         ),
-                      );},
+                      ).then((value) => setState( (){
+                        dataState.reloadDataAndWorkouts();
+                      }));},
                   ),
                   IconButton(
                     icon: const Icon(Icons.delete_forever),
@@ -230,12 +232,13 @@ class _DataPageState extends State<DataPage> {
             // mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              //이거 아님
               IconButton(
                 icon: const Icon(Icons.edit),
                 color: Colors.blueAccent,
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(
+                    MaterialPageRoute( //이거아님~!!~@~!@
                       builder: (context) => EditWorkOut(editWorkout: workout,),
                     ),
                   ).then((value) => setState( (){}));

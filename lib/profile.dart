@@ -21,9 +21,12 @@ class Profile extends StatelessWidget {
     WorkoutState simpleWorkoutState = Provider.of<WorkoutState>(context, listen: false);
 
     String uid = FirebaseAuth.instance.currentUser!.uid;
-    final profileImage = simpleWorkoutState.userData[uid]["profileImage"];
+    var profileImage = null;
+    try{
+      profileImage = simpleWorkoutState.userData[uid]["profileImage"];
+    }
+    catch(e){}
     bool profileImageIsNull = (profileImage == null);
-
 
     TextEditingController controller = TextEditingController(
       text: "initial value"

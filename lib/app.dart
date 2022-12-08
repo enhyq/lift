@@ -50,6 +50,7 @@ class App extends StatelessWidget {
       simpleGalleryState.readGallery();
       simpleWorkoutState.getMyStreak();
       simpleWorkoutState.downloadWorkoutDates();
+      simpleWorkoutState.downloadUserData();
     }
 
     // remove splash screen just before showing the initial screen

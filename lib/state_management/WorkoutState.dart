@@ -286,6 +286,9 @@ class WorkoutState extends ChangeNotifier {
     QuerySnapshot<Map<String, dynamic>> collection = await FirebaseFirestore.instance.collection("User").get();
     for(QueryDocumentSnapshot<Map<String, dynamic>>doc in collection.docs){
       Map<String, dynamic> data = doc.data();
+      if(data == null || data.isEmpty) {
+        userData["${doc.id}"] = {"nickname": "nickname", "profileImage":null};
+      }
       userData["${doc.id}"] = {"nickname": data["nickname"], "profileImage":data["profileImage"]};
     }
   }

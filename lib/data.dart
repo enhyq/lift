@@ -160,6 +160,7 @@ class _DataPageState extends State<DataPage> {
                         DateTime del = workout.createDate!;
                         SS = DateTime(SS.year, SS.month, SS.day);
                         del = DateTime(del.year, del.month, del.day);
+                        log(doc.data().toString());
                         DateTime lastWorkoutDate = doc.data()!["lastWorkout"].toDate();
                         lastWorkoutDate = DateTime(lastWorkoutDate.year, lastWorkoutDate.month, lastWorkoutDate.day);
                         if(lastWorkoutDate.isAtSameMomentAs(del)){
